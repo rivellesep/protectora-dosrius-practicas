@@ -10,6 +10,7 @@ Segunda web del programa de prácticas: una web pequeña para una protectora de 
 - **Resultado contra los criterios**: [RESULTADOS.md](RESULTADOS.md)
 - **Guía para editar la web** (para voluntarios): [GUIA-EDITOR.md](GUIA-EDITOR.md)
 - **Lo que hemos aprendido**: [APRENDIZAJE.md](APRENDIZAJE.md)
+- **Protocolo de la prueba con una persona ajena**: [PRUEBA-PERSONA-AJENA.md](PRUEBA-PERSONA-AJENA.md)
 
 ## Cómo funciona
 

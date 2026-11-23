@@ -2,7 +2,7 @@
 
 > **Proyecto de prácticas.** No es la web oficial de Amics dels Animals Dosrius.
 
-Medición de la web contra [CRITERIOS.md](CRITERIOS.md). Cada criterio se marca como **cumple**, **cumple en parte** o **no realizada**, junto con la prueba que lo demuestra. En la tabla de resumen, las pruebas no realizadas cuentan en la columna «No cumple».
+Medición de la web contra [CRITERIOS.md](CRITERIOS.md). Cada criterio se marca como **cumple**, **cumple en parte**, **no cumple** o **pendiente**, junto con la prueba que lo demuestra.
 
 Última actualización: 23/11/2026.
 
@@ -12,10 +12,10 @@ Medición de la web contra [CRITERIOS.md](CRITERIOS.md). Cada criterio se marca 
 | --- | --- | --- | --- | --- |
 | Contenido (C1–C4) | 4 | 0 | 0 | 0 |
 | Proyecto de prácticas (P1–P4) | 4 | 0 | 0 | 0 |
-| Edición (E1–E7) | 5 | 2 | 0 | 0 |
-| Calidad (Q1–Q5) | 4 | 0 | 1 | 0 |
+| Edición (E1–E7) | 6 | 1 | 0 | 0 |
+| Calidad (Q1–Q5) | 5 | 0 | 0 | 0 |
 | Hosting y coste (H1–H2) | 1 | 1 | 0 | 0 |
-| Entregables (D1–D5) | 4 | 0 | 1 | 0 |
+| Entregables (D1–D5) | 4 | 1 | 0 | 0 |
 
 ## Contenido
 
@@ -40,7 +40,7 @@ Medición de la web contra [CRITERIOS.md](CRITERIOS.md). Cada criterio se marca 
 | # | Resultado | Prueba |
 | --- | --- | --- |
 | E1 | **Cumple** | Invitamos por Pages CMS a un correo sin cuenta de GitHub. Desde el móvil se entró con ese correo y el código que llegó por email, y se vio la lista de animales. |
-| E2 | **Cumple en parte** | Con la cuenta de voluntario, desde el móvil: se dio de alta a Blanquito con foto y luego se cambió su estado a «Reservado». No probamos con la cuenta de voluntario publicar una noticia ni editar una página fija. Usan el mismo formulario y el mismo guardado que las fichas, así que deberían funcionar igual (**estimado**). Observado: después de guardar, el editor se queda en la misma ficha, y la voluntaria cambió el estado de Blanquito creyendo que estaba en la de Tambor. Va a la guía. |
+| E2 | **Cumple** | Con la cuenta de voluntario, desde el móvil, se hicieron las cuatro tareas: alta de Blanquito con foto, cambio de su estado a «Reservado», una noticia nueva (commit `904eefe`) y una frase añadida a la página «Contacto» (`f1fba58`). Todos los commits salen a nombre de `pages-cms[bot]`. Observado: después de guardar, el editor se queda en la misma ficha, y se cambió el estado de Blanquito creyendo que era Tambor. Va a la guía. |
 | E3 | **Cumple** | Medido tres veces: un push tardó 49 s en publicarse (09:31:13 → 09:32:02); un cambio de estado desde Pages CMS, 69 s (09:44:32 → 09:45:41); y el alta de Blanquito desde el móvil, 50 s (10:23:38 → 10:24:28). Las tres están muy por debajo de 5 minutos. La construcción se reparte así: preparar el entorno 38 s, clonar 2 s, instalar dependencias 37 s y construir unos 5 s. |
 | E4 | **Cumple en parte** | **Una foto de móvil sin tocar no se puede subir:** Pages CMS devuelve un error 413 con las fotos de más de unos 3 MB. Es un límite de su versión alojada en Vercel (issue #393, abierta). Lo que sí funciona: las fotos que caben (las de Commons, de unos 700 KB) se sirven en WebP a 320, 480 y 640 px, y el texto alternativo es obligatorio. El apaño para voluntarios es reducir la foto antes, por ejemplo enviándola por WhatsApp. Probado desde el móvil: la foto, enviada antes por WhatsApp, quedó en 240 KB (1536 × 2048 px), sin metadatos EXIF y por tanto sin GPS. Subió sin error y la web la sirve en tres tamaños. |
 | E5 | **Cumple** | Con la cuenta de voluntario, el menú no muestra «Configuration» ni «Collaborators». Según la documentación, esas rutas exigen una identidad de GitHub; no probamos a abrirlas escribiendo la dirección a mano. Los commits del voluntario salen a nombre de `pages-cms[bot]`, sin su correo. |
@@ -53,7 +53,7 @@ Medición de la web contra [CRITERIOS.md](CRITERIOS.md). Cada criterio se marca 
 | --- | --- | --- |
 | Q1 | **Cumple** | `npm run calidad`: Lighthouse móvil da 100 en Accesibilidad en las 5 plantillas, sin auditorías fallidas. Lighthouse usa axe-core. Informes en `calidad/`. |
 | Q2 | **Cumple** | Recorrido con teclado en Chrome: el primer Tab muestra «Saltar al contenido», que lleva el foco a `#contenido`. El foco se ve en todos los enlaces y controles. Los filtros del listado se usan con las flechas y el recuento se actualiza («Mostrando 2 de 6 animales»). `scripts/contraste-teclado.mjs`: los 14 pares de colores cumplen AA, entre 5,44:1 y 15,14:1. A 375 px, el botón «Menú» se alcanza con Tab, se abre con Enter y se cierra con Escape, y el foco vuelve al botón. Todas las páginas declaran `lang="es"`. Arreglado: el contorno de foco de «Saltar al contenido» casi no se veía sobre la barra oscura del aviso. |
-| Q3 | **No realizada** | No hicimos la prueba con NVDA. Lo que sí está comprobado: títulos en orden, textos alternativos en todas las fotos, recuento de los filtros anunciado con `role="status"` y 100 en Accesibilidad en Lighthouse. |
+| Q3 | **Cumple** | Probado con NVDA por un miembro del equipo: el recorrido se entiende y se anuncia todo. NVDA lee también lo que hay bajo el ratón, que es una opción de NVDA, no de la web. Además leímos el árbol de accesibilidad de Chrome con `scripts/arbol-accesible.mjs`, en el recorrido inicio → listado → ficha de Luna → Cómo adoptar. En las 4 páginas hay un solo título de nivel 1, sin saltos de nivel; están las zonas de cabecera, navegación, contenido y pie; todos los enlaces tienen nombre y todas las fotos, descripción. Los filtros se anuncian como grupos «Especie» y «Estado», el recuento se anuncia solo («6 animales buscan casa.») y la ficha lleva a «Cómo adoptar». |
 | Q4 | **Cumple** | Lighthouse móvil, con las fotos reales: 100 en Rendimiento en el inicio, el listado y la ficha. LCP entre 0,8 s y 1,8 s. |
 | Q5 | **Cumple** | Sin scroll horizontal en las 5 plantillas a 320, 375, 768 y 1440 px. Capturas en `calidad/capturas/`. |
 
@@ -71,7 +71,7 @@ Medición de la web contra [CRITERIOS.md](CRITERIOS.md). Cada criterio se marca 
 | D1 | **Cumple** | [COMPARATIVA.md](COMPARATIVA.md), apartado de CMS. |
 | D2 | **Cumple** | [COMPARATIVA.md](COMPARATIVA.md), apartado de hosting. |
 | D3 | **Cumple** | [GUIA-EDITOR.md](GUIA-EDITOR.md). Pendiente de corregirla según lo que salga de la prueba D4. |
-| D4 | **No realizada** | No hicimos la prueba con una persona ajena al proyecto. La guía sí recoge lo que observamos en la prueba con la cuenta de voluntario: el límite de las fotos y el despiste de cambiar un animal que no era. |
+| D4 | **Cumple en parte** | La hizo un miembro del equipo, no una persona ajena: no encontramos a nadie de fuera disponible. Le resultó fácil, porque cada campo del editor explica qué poner (son las descripciones de `.pages.yml`). La prueba con una persona ajena queda preparada en [PRUEBA-PERSONA-AJENA.md](PRUEBA-PERSONA-AJENA.md). |
 | D5 | **Cumple** | [APRENDIZAJE.md](APRENDIZAJE.md), separado en medido, observado y estimado. |
 
 ## Cosas que hemos aprendido por el camino

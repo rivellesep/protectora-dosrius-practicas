@@ -30,6 +30,8 @@ Segunda web del programa, del 23/11/2026. Aquí no hubo guía paso a paso: elegi
 - **No acepta fotos de más de unos 3 MB (error 413).** Es justo el caso más normal: una foto hecha con el móvil. La versión alojada corre en Vercel, que corta las peticiones de más de 4,5 MB. Está reportado en su repositorio desde mayo de 2026 y sin arreglar. La documentación no lo menciona. Lo descubrimos con la primera prueba real.
 - **Si entras con GitHub, el commit sale con tu correo.** Aunque la configuración diga `identity: app`, el commit que hicimos con la sesión de GitHub del administrador salió con su nombre y su correo personal, en un repositorio público. En cambio, los de la persona invitada por email salieron a nombre de `pages-cms[bot]`.
 - **Después de guardar, se queda en la misma ficha.** La persona voluntaria quiso cambiar el estado de Tambor y cambió el de Blanquito, que era la ficha que tenía abierta. Por eso la guía dice que hay que volver a la lista.
+- **Las descripciones de cada campo ayudan mucho.** Quien probó la guía comentó que la tarea era fácil porque cada campo explica qué poner. Merece la pena cuidar las descripciones de `.pages.yml` tanto como la guía.
+- **Un lector de pantalla puede abrumar a quien no lo usa.** NVDA lee por defecto todo lo que pasa bajo el ratón. Para revisar una web con NVDA conviene desactivar el seguimiento del ratón (NVDA+M).
 - **Las personas invitadas no ven la configuración.** En el móvil no aparecen «Configuration» ni «Collaborators».
 - **Reescribe los archivos al guardar:** cambia el orden de los campos, pasa las listas a varias líneas y quita comillas. No afecta a la web.
 
@@ -49,7 +51,6 @@ Segunda web del programa, del 23/11/2026. Aquí no hubo guía paso a paso: elegi
 
 - **Crecimiento del repositorio:** unos 360 MB al año, si llegan 30 animales con 3 fotos de unos 4 MB cada una. Con el apaño de WhatsApp (unos 250 KB por foto) serían unos 25 MB al año. GitHub recomienda no pasar de 1 GB.
 - **Construcciones que caben en el plan gratuito:** unas 2.100 al mes, con 3.000 minutos y unos 1,4 minutos por construcción. Para una protectora de pueblo sobra.
-- **Noticias y páginas fijas:** no las probamos con la cuenta de voluntario. Usan el mismo formulario y el mismo guardado que las fichas, así que deberían funcionar igual.
 - **La opción de correo privado de GitHub:** debería evitar que los commits hechos con Pages CMS desde una cuenta de GitHub lleven el correo. No lo hemos comprobado.
 - **El arreglo del límite de fotos:** si Pages CMS fusiona la PR #425, que reduce las fotos en el navegador, E4 se cumpliría sin tocar nada nuestro.
 

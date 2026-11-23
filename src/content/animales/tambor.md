@@ -4,7 +4,7 @@ especie: otro
 sexo: macho
 edad: 2 años
 tamano: pequeno
-estado: disponible
+estado: perdido
 convive: []
 resumen: "Conejo dócil que se deja coger y disfruta de un espacio amplio."
 llegada: 2026-09-12

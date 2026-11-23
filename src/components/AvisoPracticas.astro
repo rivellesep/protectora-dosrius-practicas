@@ -1,0 +1,36 @@
+---
+import { ENTIDAD_REAL } from '../lib/ajustes';
+---
+
+<aside class="aviso" aria-label="Aviso de proyecto de prácticas">
+  <p class="contenedor">
+    <strong>Proyecto de prácticas.</strong> No es la web oficial de{' '}
+    <a href={ENTIDAD_REAL.url} rel="noopener">{ENTIDAD_REAL.nombre}</a>. Los animales, las fotos y los datos de contacto
+    son de ejemplo.
+  </p>
+</aside>
+
+<style>
+  .aviso {
+    background: var(--text);
+    color: var(--bg);
+    font-size: 1rem;
+  }
+
+  .aviso p {
+    margin-block: 0;
+    padding-block: 0.6rem;
+  }
+
+  .aviso a {
+    color: #ffd8b5;
+  }
+
+  .aviso a:hover {
+    color: #fff;
+  }
+
+  .aviso a:focus-visible {
+    outline-color: #ffd8b5;
+  }
+</style>

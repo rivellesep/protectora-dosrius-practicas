@@ -1,0 +1,72 @@
+---
+import { ajustes, ENTIDAD_REAL } from '../lib/ajustes';
+---
+
+<footer class="pie">
+  <div class="contenedor pie__rejilla">
+    <div>
+      <p class="pie__titulo">Amics dels Animals Dosrius</p>
+      <p>Protectora de animales de Dosrius (Maresme), sin ánimo de lucro y llevada solo por voluntarios.</p>
+    </div>
+    <nav aria-label="Pie de página">
+      <ul>
+        <li><a href="/animales/">Animales en adopción</a></li>
+        <li><a href="/colaborar/">Cómo colaborar</a></li>
+        <li><a href={ajustes.teaming} rel="noopener">Hazte teamer</a></li>
+        <li><a href="/contacto/">Contacto</a></li>
+      </ul>
+    </nav>
+    <p class="pie__aviso">
+      Proyecto de prácticas de formación profesional. No es la web oficial de{' '}
+      <a href={ENTIDAD_REAL.url} rel="noopener">{ENTIDAD_REAL.nombre}</a> ni se ha hecho con su participación.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .pie {
+    background: var(--text);
+    color: var(--bg);
+    padding-block: 2.5rem;
+    margin-top: 3rem;
+    font-size: 1rem;
+  }
+
+  .pie__rejilla {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  }
+
+  .pie__titulo {
+    font-weight: 900;
+    font-size: 1.15rem;
+  }
+
+  .pie ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  .pie a {
+    color: #ffd8b5;
+  }
+
+  .pie a:hover {
+    color: #fff;
+  }
+
+  .pie a:focus-visible {
+    outline-color: #ffd8b5;
+  }
+
+  .pie__aviso {
+    grid-column: 1 / -1;
+    border-top: 1px solid rgb(255 250 244 / 0.25);
+    padding-top: 1rem;
+    margin: 0;
+  }
+</style>

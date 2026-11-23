@@ -1,0 +1,59 @@
+---
+import { Image } from 'astro:assets';
+import { ESPECIES, ESTADOS, SEXOS } from '../content.config';
+import type { Animal } from '../lib/contenido';
+
+interface Props {
+  animal: Animal;
+  /** Heading level inside the card, so the page outline stays correct */
+  nivel?: 2 | 3;
+  /** Load the photo eagerly (only for cards visible on first paint) */
+  prioridad?: boolean;
+}
+
+const { animal, nivel = 3, prioridad = false } = Astro.props;
+const { nombre, especie, sexo, edad, estado, resumen, fotos } = animal.data;
+const Titulo = `h${nivel}` as 'h2' | 'h3';
+const foto = fotos[0];
+---
+
+<article class="tarjeta tarjeta-animal">
+  <Image
+    src={foto.imagen}
+    alt={foto.alt}
+    widths={[320, 480, 640]}
+    sizes="(max-width: 40rem) 100vw, 22rem"
+    loading={prioridad ? 'eager' : 'lazy'}
+    fetchpriority={prioridad ? 'high' : undefined}
+    class="tarjeta-animal__foto"
+  />
+  <div class="tarjeta__cuerpo">
+    <span class={`etiqueta etiqueta--${estado}`}>{ESTADOS[estado]}</span>
+    <Titulo class="tarjeta-animal__nombre">
+      <a href={`/animales/${animal.id}/`}>{nombre}</a>
+    </Titulo>
+    <p class="tarjeta__meta">{ESPECIES[especie]} · {SEXOS[sexo]} · {edad}</p>
+    <p>{resumen}</p>
+  </div>
+</article>
+
+<style>
+  .tarjeta-animal__foto {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .tarjeta-animal__nombre {
+    margin: 0;
+    font-size: 1.4rem;
+  }
+
+  .tarjeta-animal__nombre a {
+    color: var(--text);
+  }
+
+  .tarjeta-animal__nombre a:hover {
+    color: var(--brand-dark);
+  }
+</style>

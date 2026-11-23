@@ -1,0 +1,189 @@
+---
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { getAnimales, fecha } from '../../lib/contenido';
+import { ajustes } from '../../lib/ajustes';
+import { CONVIVE, ESPECIES, ESTADOS, SEXOS, TAMANOS } from '../../content.config';
+
+export async function getStaticPaths() {
+  const animales = await getAnimales();
+  return animales.map((animal) => ({ params: { id: animal.id }, props: { animal } }));
+}
+
+const { animal } = Astro.props;
+const { nombre, especie, sexo, edad, tamano, estado, convive, llegada, fotos, resumen } = animal.data;
+const { Content } = await render(animal);
+const [principal, ...resto] = fotos;
+// "Perros, gatos, niños y niñas": only the first item capitalised
+const conviveLista = convive.map((c, i) => (i === 0 ? CONVIVE[c] : CONVIVE[c].toLowerCase()));
+const conviveTexto = conviveLista.length ? conviveLista.join(', ') : 'Mejor como único animal de la casa';
+const asunto = encodeURIComponent(`Adopción: ${nombre}`);
+---
+
+<Base title={nombre} description={resumen}>
+  <article class="contenedor seccion ficha">
+    <p class="volver"><a href="/animales/">← Todos los animales</a></p>
+
+    <div class="ficha__fila">
+      <div class="ficha__fotos">
+        <Image
+          src={principal.imagen}
+          alt={principal.alt}
+          widths={[480, 800, 1200]}
+          sizes="(max-width: 52rem) 100vw, 40rem"
+          loading="eager"
+          fetchpriority="high"
+          class="ficha__principal"
+        />
+        {
+          resto.length > 0 && (
+            <ul class="ficha__galeria">
+              {resto.map((foto) => (
+                <li>
+                  <Image src={foto.imagen} alt={foto.alt} widths={[240, 480]} sizes="12rem" />
+                </li>
+              ))}
+            </ul>
+          )
+        }
+      </div>
+
+      <div>
+        <span class={`etiqueta etiqueta--${estado}`}>{ESTADOS[estado]}</span>
+        <h1>{nombre}</h1>
+        <p class="intro">{resumen}</p>
+
+        <h2 class="visually-hidden">Datos de {nombre}</h2>
+        <dl class="datos">
+          <div><dt>Especie</dt><dd>{ESPECIES[especie]}</dd></div>
+          <div><dt>Sexo</dt><dd>{SEXOS[sexo]}</dd></div>
+          <div><dt>Edad</dt><dd>{edad}</dd></div>
+          <div><dt>Tamaño</dt><dd>{TAMANOS[tamano]}</dd></div>
+          <div><dt>Convive con</dt><dd>{conviveTexto}</dd></div>
+          <div>
+            <dt>En la protectora desde</dt>
+            <dd><time datetime={llegada.toISOString().slice(0, 10)}>{fecha(llegada)}</time></dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <section class="prosa" aria-labelledby="t-como">
+      <h2 id="t-como">Cómo es {nombre}</h2>
+      <Content />
+    </section>
+
+    <section class="cta" aria-labelledby="t-cta">
+      {
+        estado === 'disponible' && (
+          <>
+            <h2 id="t-cta">¿Quieres adoptar a {nombre}?</h2>
+            <p>{ajustes.avisoAdopciones}</p>
+            <p class="cta__botones">
+              <a class="boton" href="/como-adoptar/">Cómo adoptar</a>
+              <a class="boton boton--secundario" href={`mailto:${ajustes.email}?subject=${asunto}`}>
+                Escribir sobre {nombre}
+              </a>
+            </p>
+          </>
+        )
+      }
+      {
+        estado === 'reservado' && (
+          <>
+            <h2 id="t-cta">{nombre} ya tiene una familia interesada</h2>
+            <p>
+              Si la adopción no sale adelante, volverá a estar disponible. Mientras tanto, conoce a{' '}
+              <a href="/animales/?estado=disponible">los animales disponibles</a>.
+            </p>
+          </>
+        )
+      }
+      {
+        estado === 'adoptado' && (
+          <>
+            <h2 id="t-cta">{nombre} ya tiene casa</h2>
+            <p>
+              Gracias a su familia. Otros animales siguen esperando: <a href="/animales/">conócelos</a>.
+            </p>
+          </>
+        )
+      }
+    </section>
+  </article>
+</Base>
+
+<style>
+  .volver {
+    font-weight: 700;
+  }
+
+  .ficha__fila {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+    align-items: start;
+    margin-bottom: 2rem;
+  }
+
+  .ficha__principal {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius);
+  }
+
+  .ficha__galeria {
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0 0;
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+  }
+
+  .ficha__galeria img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .datos {
+    display: grid;
+    gap: 0.5rem;
+    margin: 1.5rem 0 0;
+  }
+
+  .datos div {
+    display: grid;
+    grid-template-columns: minmax(8rem, 12rem) 1fr;
+    gap: 1rem;
+    padding-block: 0.4rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .datos dt {
+    font-weight: 800;
+  }
+
+  .datos dd {
+    margin: 0;
+  }
+
+  .cta {
+    margin-top: 2.5rem;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    background: var(--surface-alt);
+    max-width: 42rem;
+  }
+
+  .cta__botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 0;
+  }
+</style>

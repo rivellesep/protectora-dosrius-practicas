@@ -1,0 +1,245 @@
+/* Colours checked for WCAG AA: every text/background pair below is at least 4.5:1. */
+:root {
+  --bg: #fffaf4;
+  --surface: #ffffff;
+  --surface-alt: #fbefe3;
+  --text: #2b211b;
+  --muted: #5e5148;
+  --line: #e6d6c6;
+  --brand: #b4471a;
+  --brand-dark: #8a3510;
+  --on-brand: #ffffff;
+  --focus: #1d4a66;
+  --estado-disponible: #2f5a2a;
+  --estado-reservado: #8a5a00;
+  --estado-adoptado: #4b4b4b;
+  --radius: 14px;
+  --shadow: 0 1px 2px rgb(43 33 27 / 0.06), 0 6px 18px rgb(43 33 27 / 0.06);
+  --max: 72rem;
+  --font: 'Nunito Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  font-weight: 800;
+  margin: 0 0 0.5em;
+}
+
+h1 {
+  font-size: clamp(2rem, 1.4rem + 2.6vw, 3rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--brand-dark);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--text);
+}
+
+/* One visible focus style everywhere, never removed */
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -10rem;
+  z-index: 100;
+  background: var(--text);
+  color: var(--bg);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  top: 1rem;
+  color: var(--bg);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.contenedor {
+  width: min(100% - 2rem, var(--max));
+  margin-inline: auto;
+}
+
+.seccion {
+  padding-block: clamp(2.5rem, 2rem + 3vw, 4.5rem);
+}
+
+.seccion--alt {
+  background: var(--surface-alt);
+}
+
+.intro {
+  font-size: 1.25rem;
+  color: var(--muted);
+  max-width: 40rem;
+}
+
+.prosa {
+  max-width: 42rem;
+}
+
+.prosa h2 {
+  margin-top: 1.6em;
+  font-size: 1.5rem;
+}
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0.7rem 1.3rem;
+  border-radius: 999px;
+  background: var(--brand);
+  color: var(--on-brand);
+  font-weight: 800;
+  text-decoration: none;
+  border: 2px solid var(--brand);
+}
+
+.boton:hover {
+  background: var(--brand-dark);
+  border-color: var(--brand-dark);
+  color: var(--on-brand);
+}
+
+.boton--secundario {
+  background: transparent;
+  color: var(--brand-dark);
+}
+
+.boton--secundario:hover {
+  background: var(--surface);
+  color: var(--text);
+}
+
+.rejilla {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tarjeta {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.tarjeta__cuerpo {
+  padding: 1rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.tarjeta__cuerpo p {
+  margin: 0;
+}
+
+.tarjeta__meta {
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.etiqueta {
+  display: inline-block;
+  padding: 0.15rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #fff;
+  background: var(--estado-adoptado);
+  width: fit-content;
+}
+
+.etiqueta--disponible {
+  background: var(--estado-disponible);
+}
+
+.etiqueta--reservado {
+  background: var(--estado-reservado);
+}
+
+.etiqueta--evento {
+  background: var(--brand-dark);
+}
+
+.etiqueta--noticia {
+  background: var(--focus);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}

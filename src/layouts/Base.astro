@@ -1,0 +1,49 @@
+---
+import '@fontsource-variable/nunito/wght.css';
+import '../styles/global.css';
+import AvisoPracticas from '../components/AvisoPracticas.astro';
+import Cabecera from '../components/Cabecera.astro';
+import Pie from '../components/Pie.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Proyecto de prácticas, no es la web oficial. Web de ejemplo para una protectora de animales de Dosrius llevada por voluntarios.',
+} = Astro.props;
+
+const nombre = 'Amics dels Animals Dosrius';
+const fullTitle = title ? `${title} · ${nombre} (prácticas)` : `${nombre} (proyecto de prácticas)`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <!-- Practice project: never indexed. public/_headers sends the same rule as X-Robots-Tag -->
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#b4471a" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <AvisoPracticas />
+    <Cabecera />
+    <main id="contenido" tabindex="-1">
+      <slot />
+    </main>
+    <Pie />
+  </body>
+</html>

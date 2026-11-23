@@ -1,0 +1,298 @@
+# Pages CMS configuration (https://pagescms.org/docs/configuration/)
+#
+# Every collection mirrors a schema in src/content.config.ts. If you add, rename or remove
+# a field there, do the same here, or the CMS will save files that fail the build.
+# A failed build never replaces the live site: Cloudflare keeps the previous version.
+#
+# Labels and descriptions are in Spanish for the volunteers who edit the site.
+# Invited collaborators (email) can edit content and media, but not this file.
+
+media:
+  - name: animales
+    label: Fotos de animales
+    input: src/assets/animales
+    # Root-absolute path: Astro resolves /src/... from the project root and optimises the photo
+    output: /src/assets/animales
+    rename: safe
+    categories: [image]
+    extensions: [jpg, jpeg, png, webp, avif]
+  - name: noticias
+    label: Imágenes de noticias
+    input: src/assets/noticias
+    output: /src/assets/noticias
+    rename: safe
+    categories: [image]
+    extensions: [jpg, jpeg, png, webp, avif]
+
+content:
+  - name: animales
+    label: Animales
+    type: collection
+    path: src/content/animales
+    format: yaml-frontmatter
+    filename: '{primary}.md'
+    view:
+      fields: [nombre, estado, especie, llegada]
+      primary: nombre
+      sort: [llegada, nombre]
+      default:
+        sort: llegada
+        order: desc
+    fields:
+      - name: nombre
+        label: Nombre
+        type: string
+        required: true
+        description: El nombre también forma la dirección de la ficha. No lo cambies después de publicarla.
+      - name: estado
+        label: Estado
+        type: select
+        required: true
+        description: Cuando lo adopten, cámbialo a «Adoptado». Saldrá en «Ya tienen casa» en unos minutos.
+        options:
+          values:
+            - name: disponible
+              label: Disponible
+            - name: reservado
+              label: Reservado
+            - name: adoptado
+              label: Adoptado
+      - name: especie
+        label: Especie
+        type: select
+        required: true
+        options:
+          values:
+            - name: perro
+              label: Perro
+            - name: gato
+              label: Gato
+            - name: otro
+              label: Otro
+      - name: sexo
+        label: Sexo
+        type: select
+        required: true
+        options:
+          values:
+            - name: macho
+              label: Macho
+            - name: hembra
+              label: Hembra
+      - name: edad
+        label: Edad aproximada
+        type: string
+        required: true
+        description: 'Por ejemplo: «Unos 3 años» o «Cachorro de 4 meses».'
+      - name: tamano
+        label: Tamaño
+        type: select
+        required: true
+        options:
+          values:
+            - name: pequeno
+              label: Pequeño
+            - name: mediano
+              label: Mediano
+            - name: grande
+              label: Grande
+      - name: convive
+        label: Convive bien con
+        type: select
+        description: Déjalo vacío si es mejor que sea el único animal de la casa.
+        options:
+          multiple: true
+          values:
+            - name: perros
+              label: Perros
+            - name: gatos
+              label: Gatos
+            - name: ninos
+              label: Niños y niñas
+      - name: resumen
+        label: Resumen
+        type: text
+        required: true
+        description: Una o dos frases, como máximo 160 caracteres. Sale en las tarjetas.
+        options:
+          maxlength: 160
+      - name: llegada
+        label: Fecha de llegada a la protectora
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: fotos
+        label: Fotos
+        type: object
+        required: true
+        description: Al menos una. La primera es la que sale en las tarjetas. Sube las fotos tal cual, desde el móvil o el ordenador.
+        list:
+          min: 1
+          max: 8
+          collapsible:
+            collapsed: false
+            summary: 'Foto {index}'
+        fields:
+          - name: imagen
+            label: Foto
+            type: image
+            required: true
+            options:
+              media: animales
+          - name: alt
+            label: Descripción de la foto
+            type: string
+            required: true
+            description: 'Qué se ve, para quien no puede ver la foto. Por ejemplo: «Perra marrón tumbada en la hierba, mirando a la cámara».'
+      - name: oculto
+        label: Ocultar en la web
+        type: boolean
+        default: false
+        description: Márcalo mientras la ficha esté a medias. No saldrá en la web hasta que lo desmarques.
+      - name: body
+        label: Cómo es (carácter)
+        type: rich-text
+        required: true
+        options:
+          format: markdown
+          media: false
+
+  - name: noticias
+    label: Noticias y eventos
+    type: collection
+    path: src/content/noticias
+    format: yaml-frontmatter
+    filename: '{primary}.md'
+    view:
+      fields: [titulo, tipo, fecha]
+      primary: titulo
+      sort: [fecha, titulo]
+      default:
+        sort: fecha
+        order: desc
+    fields:
+      - name: titulo
+        label: Título
+        type: string
+        required: true
+      - name: tipo
+        label: Tipo
+        type: select
+        required: true
+        options:
+          values:
+            - name: noticia
+              label: Noticia
+            - name: evento
+              label: Evento
+      - name: fecha
+        label: Fecha
+        type: date
+        required: true
+        description: En un evento, el día en que se celebra.
+        options:
+          format: yyyy-MM-dd
+      - name: lugar
+        label: Lugar
+        type: string
+        description: Obligatorio en los eventos.
+      - name: resumen
+        label: Resumen
+        type: text
+        required: true
+        options:
+          maxlength: 200
+      - name: imagen
+        label: Imagen (opcional)
+        type: image
+        options:
+          media: noticias
+      - name: alt
+        label: Descripción de la imagen
+        type: string
+        description: Obligatoria si pones imagen. Qué se ve, para quien no puede verla.
+      - name: oculto
+        label: Ocultar en la web
+        type: boolean
+        default: false
+      - name: body
+        label: Texto
+        type: rich-text
+        required: true
+        options:
+          format: markdown
+          media: false
+
+  - name: paginas
+    label: Páginas fijas
+    type: collection
+    path: src/content/paginas
+    format: yaml-frontmatter
+    view:
+      fields: [titulo]
+      primary: titulo
+    # The file name is the page URL: volunteers can edit pages but not create or delete them
+    operations:
+      create: false
+      delete: false
+      rename: false
+    fields:
+      - name: titulo
+        label: Título
+        type: string
+        required: true
+      - name: intro
+        label: Entradilla
+        type: text
+        required: true
+      - name: orden
+        label: Orden
+        type: number
+        hidden: true
+      - name: body
+        label: Texto
+        type: rich-text
+        required: true
+        options:
+          format: markdown
+          media: false
+
+  - name: ajustes
+    label: Ajustes de la web
+    type: file
+    path: src/data/ajustes.json
+    format: json
+    fields:
+      - name: titular
+        label: Titular de la portada
+        type: string
+        required: true
+      - name: subtitulo
+        label: Texto bajo el titular
+        type: text
+        required: true
+      - name: avisoAdopciones
+        label: Aviso en las fichas de animales disponibles
+        type: text
+        required: true
+      - name: teaming
+        label: Enlace de donaciones (Teaming)
+        type: string
+        required: true
+      - name: email
+        label: Correo de contacto
+        type: string
+        required: true
+        description: Dirección de ejemplo. Esta web de prácticas no muestra datos de contacto reales.
+
+settings:
+  # Keep the default app identity: the repository is public, so commits must not carry
+  # the volunteers' email addresses.
+  commit:
+    identity: app
+    templates:
+      create: 'Crear {path} (Pages CMS)'
+      update: 'Actualizar {path} (Pages CMS)'
+      delete: 'Borrar {path} (Pages CMS)'
+      rename: 'Renombrar {oldPath} a {newPath} (Pages CMS)'

@@ -1,0 +1,14 @@
+{
+  // Assets-only Worker: Cloudflare serves the static Astro build, no Worker code runs.
+  // The name must match the Worker name in the Cloudflare dashboard, or Workers Builds fails.
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "protectora-dosrius-practicas",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    // Serve dist/404.html with a 404 status for unknown URLs
+    "not_found_handling": "404-page",
+    // Matches trailingSlash: 'always' in astro.config.mjs
+    "html_handling": "force-trailing-slash"
+  }
+}

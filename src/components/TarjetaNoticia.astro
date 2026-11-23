@@ -1,0 +1,58 @@
+---
+import { Image } from 'astro:assets';
+import { fecha, type Noticia } from '../lib/contenido';
+
+interface Props {
+  noticia: Noticia;
+  nivel?: 2 | 3;
+}
+
+const { noticia, nivel = 3 } = Astro.props;
+const { titulo, tipo, fecha: dia, lugar, resumen, imagen, alt } = noticia.data;
+const Titulo = `h${nivel}` as 'h2' | 'h3';
+---
+
+<article class="tarjeta">
+  {
+    imagen && (
+      <Image
+        src={imagen}
+        alt={alt ?? ''}
+        widths={[320, 480, 640]}
+        sizes="(max-width: 40rem) 100vw, 22rem"
+        class="tarjeta-noticia__foto"
+      />
+    )
+  }
+  <div class="tarjeta__cuerpo">
+    <span class={`etiqueta etiqueta--${tipo}`}>{tipo === 'evento' ? 'Evento' : 'Noticia'}</span>
+    <Titulo class="tarjeta-noticia__titulo">
+      <a href={`/noticias/${noticia.id}/`}>{titulo}</a>
+    </Titulo>
+    <p class="tarjeta__meta">
+      <time datetime={dia.toISOString().slice(0, 10)}>{fecha(dia)}</time>
+      {tipo === 'evento' && lugar && <> · {lugar}</>}
+    </p>
+    <p>{resumen}</p>
+  </div>
+</article>
+
+<style>
+  .tarjeta-noticia__foto {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .tarjeta-noticia__titulo {
+    margin: 0;
+  }
+
+  .tarjeta-noticia__titulo a {
+    color: var(--text);
+  }
+
+  .tarjeta-noticia__titulo a:hover {
+    color: var(--brand-dark);
+  }
+</style>

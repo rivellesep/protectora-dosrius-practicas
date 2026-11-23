@@ -1,0 +1,137 @@
+---
+import Base from '../layouts/Base.astro';
+import TarjetaAnimal from '../components/TarjetaAnimal.astro';
+import TarjetaNoticia from '../components/TarjetaNoticia.astro';
+import { getAnimales, getNoticias } from '../lib/contenido';
+import { ajustes } from '../lib/ajustes';
+
+const animales = await getAnimales();
+const disponibles = animales.filter((a) => a.data.estado === 'disponible');
+const destacados = disponibles.slice(0, 3);
+const noticias = (await getNoticias()).slice(0, 3);
+---
+
+<Base>
+  <section class="portada" aria-labelledby="titular">
+    <div class="contenedor portada__fila">
+      <div>
+        <h1 id="titular">{ajustes.titular}</h1>
+        <p class="intro">{ajustes.subtitulo}</p>
+        <p class="portada__botones">
+          <a class="boton" href="/animales/">Ver animales en adopción</a>
+          <a class="boton boton--secundario" href="/colaborar/">Cómo colaborar</a>
+        </p>
+      </div>
+      <p class="portada__dato">
+        <span class="portada__numero">{disponibles.length}</span>
+        <span>animales esperan una familia ahora mismo</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="seccion" aria-labelledby="t-animales">
+    <div class="contenedor">
+      <h2 id="t-animales">Buscan casa</h2>
+      <ul class="rejilla">
+        {
+          destacados.map((animal, i) => (
+            <li>
+              <TarjetaAnimal animal={animal} prioridad={i === 0} />
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mas"><a href="/animales/">Ver todos los animales</a></p>
+    </div>
+  </section>
+
+  <section class="seccion seccion--alt" aria-labelledby="t-ayudar">
+    <div class="contenedor">
+      <h2 id="t-ayudar">Cómo puedes ayudar</h2>
+      <ul class="rejilla ayudas">
+        <li>
+          <h3><a href="/como-adoptar/">Adopta</a></h3>
+          <p>Dale una casa para siempre a un perro o un gato. Te acompañamos en todo el proceso.</p>
+        </li>
+        <li>
+          <h3><a href="/colaborar/">Acoge</a></h3>
+          <p>Ofrece tu casa unas semanas mientras encuentra familia. Nosotros pagamos la comida y el veterinario.</p>
+        </li>
+        <li>
+          <h3><a href={ajustes.teaming} rel="noopener">Haz una donación</a></h3>
+          <p>Con un euro al mes en Teaming nos ayudas a pagar vacunas y esterilizaciones.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="seccion" aria-labelledby="t-noticias">
+    <div class="contenedor">
+      <h2 id="t-noticias">Noticias y eventos</h2>
+      <ul class="rejilla">
+        {
+          noticias.map((noticia) => (
+            <li>
+              <TarjetaNoticia noticia={noticia} />
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mas"><a href="/noticias/">Ver todas las noticias</a></p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .portada {
+    background: var(--surface-alt);
+    padding-block: clamp(2.5rem, 2rem + 4vw, 5rem);
+  }
+
+  .portada__fila {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  }
+
+  .portada__botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .portada__dato {
+    justify-self: center;
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    max-width: 16rem;
+    font-weight: 700;
+    color: var(--muted);
+  }
+
+  .portada__numero {
+    font-size: 5rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--brand-dark);
+  }
+
+  .mas {
+    margin-top: 1.5rem;
+    font-weight: 800;
+  }
+
+  .ayudas li {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    border: 1px solid var(--line);
+  }
+
+  .ayudas p {
+    margin: 0;
+  }
+</style>

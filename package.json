@@ -1,0 +1,29 @@
+{
+  "name": "protectora-dosrius-practicas",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Training project: website for a village animal shelter (Amics dels Animals Dosrius). Not the official website.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "wrangler dev",
+    "check": "astro check",
+    "verify": "node scripts/verify-noindex.mjs",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "@fontsource-variable/nunito": "^5.3.0",
+    "astro": "^7.4.4",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "typescript": "^6.0.3",
+    "wrangler": "^4.155.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

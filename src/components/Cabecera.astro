@@ -1,0 +1,177 @@
+---
+const enlaces = [
+  { href: '/animales/', texto: 'Animales' },
+  { href: '/como-adoptar/', texto: 'Cómo adoptar' },
+  { href: '/colaborar/', texto: 'Colaborar' },
+  { href: '/noticias/', texto: 'Noticias' },
+  { href: '/quienes-somos/', texto: 'Quiénes somos' },
+  { href: '/contacto/', texto: 'Contacto' },
+];
+
+const actual = Astro.url.pathname;
+const esActual = (href: string) => actual === href || actual.startsWith(href);
+---
+
+<header class="cabecera">
+  <div class="contenedor cabecera__fila">
+    <a class="marca" href="/">
+      <svg aria-hidden="true" width="36" height="36" viewBox="0 0 64 64">
+        <g fill="currentColor">
+          <ellipse cx="32" cy="40" rx="13" ry="11"></ellipse>
+          <ellipse cx="17" cy="25" rx="5" ry="7" transform="rotate(-20 17 25)"></ellipse>
+          <ellipse cx="26" cy="17" rx="5" ry="7"></ellipse>
+          <ellipse cx="38" cy="17" rx="5" ry="7"></ellipse>
+          <ellipse cx="47" cy="25" rx="5" ry="7" transform="rotate(20 47 25)"></ellipse>
+        </g>
+      </svg>
+      <span>Amics dels Animals <span class="marca__pueblo">Dosrius</span></span>
+    </a>
+
+    <button class="menu-boton" type="button" aria-expanded="false" aria-controls="menu-principal" hidden>
+      Menú
+    </button>
+
+    <nav id="menu-principal" class="menu" aria-label="Principal">
+      <ul>
+        {
+          enlaces.map(({ href, texto }) => (
+            <li>
+              <a href={href} aria-current={esActual(href) ? 'page' : undefined}>
+                {texto}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Small screens: the menu collapses behind a button. Without JavaScript it stays open.
+  const boton = document.querySelector<HTMLButtonElement>('.menu-boton');
+  const menu = document.getElementById('menu-principal');
+  const pequena = window.matchMedia('(max-width: 52rem)');
+
+  function aplicar() {
+    if (!boton || !menu) return;
+    if (pequena.matches) {
+      boton.hidden = false;
+      const abierto = boton.getAttribute('aria-expanded') === 'true';
+      menu.hidden = !abierto;
+    } else {
+      boton.hidden = true;
+      boton.setAttribute('aria-expanded', 'false');
+      menu.hidden = false;
+    }
+  }
+
+  boton?.addEventListener('click', () => {
+    const abierto = boton.getAttribute('aria-expanded') === 'true';
+    boton.setAttribute('aria-expanded', String(!abierto));
+    if (menu) menu.hidden = abierto;
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && boton?.getAttribute('aria-expanded') === 'true') {
+      boton.setAttribute('aria-expanded', 'false');
+      if (menu) menu.hidden = true;
+      boton.focus();
+    }
+  });
+
+  pequena.addEventListener('change', aplicar);
+  aplicar();
+</script>
+
+<style>
+  .cabecera {
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .cabecera__fila {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    padding-block: 0.75rem;
+  }
+
+  .marca {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--brand-dark);
+    font-weight: 900;
+    font-size: 1.2rem;
+    text-decoration: none;
+    line-height: 1.15;
+  }
+
+  .marca span {
+    color: var(--text);
+  }
+
+  .marca__pueblo {
+    color: var(--brand-dark) !important;
+  }
+
+  .menu-boton {
+    min-height: 44px;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    border: 2px solid var(--text);
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.5rem;
+  }
+
+  .menu a {
+    display: inline-block;
+    padding: 0.5rem 0.6rem;
+    min-height: 44px;
+    color: var(--text);
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 8px;
+  }
+
+  .menu a:hover {
+    background: var(--surface-alt);
+  }
+
+  .menu a[aria-current='page'] {
+    color: var(--brand-dark);
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 6px;
+  }
+
+  @media (max-width: 52rem) {
+    .menu {
+      flex-basis: 100%;
+    }
+
+    .menu ul {
+      flex-direction: column;
+      padding-bottom: 0.5rem;
+    }
+
+    .menu a {
+      display: block;
+    }
+  }
+</style>

@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import TarjetaNoticia from '../../components/TarjetaNoticia.astro';
+import { getNoticias } from '../../lib/contenido';
+
+const noticias = await getNoticias();
+---
+
+<Base title="Noticias y eventos" description="Noticias y eventos de la protectora. Proyecto de prácticas.">
+  <div class="contenedor seccion">
+    <h1>Noticias y eventos</h1>
+    <p class="intro">Lo que pasa en la protectora: jornadas de adopción, campañas y avisos.</p>
+    <ul class="rejilla">
+      {
+        noticias.map((noticia) => (
+          <li>
+            <TarjetaNoticia noticia={noticia} nivel={2} />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Base>

@@ -1,0 +1,193 @@
+---
+import Base from '../../layouts/Base.astro';
+import TarjetaAnimal from '../../components/TarjetaAnimal.astro';
+import { getAnimales } from '../../lib/contenido';
+import { ESPECIES, ESTADOS } from '../../content.config';
+
+const animales = await getAnimales();
+// Adopted animals never appear among the ones looking for a home (criterion C3)
+const buscanCasa = animales.filter((a) => a.data.estado !== 'adoptado');
+const conCasa = animales.filter((a) => a.data.estado === 'adoptado');
+
+const filtrosEspecie = Object.entries(ESPECIES);
+const filtrosEstado = Object.entries(ESTADOS).filter(([valor]) => valor !== 'adoptado');
+---
+
+<Base title="Animales en adopción" description="Perros, gatos y otros animales que buscan familia en Dosrius. Proyecto de prácticas.">
+  <div class="contenedor seccion">
+    <h1>Animales en adopción</h1>
+    <p class="intro">
+      Todos se entregan vacunados, desparasitados y con microchip. Si te interesa alguno, mira{' '}
+      <a href="/como-adoptar/">cómo adoptar</a>.
+    </p>
+
+    <form class="filtros solo-js" aria-labelledby="t-filtros">
+      <h2 id="t-filtros" class="visually-hidden">Filtrar animales</h2>
+      <fieldset>
+        <legend>Especie</legend>
+        <label><input type="radio" name="especie" value="" checked /> Todas</label>
+        {
+          filtrosEspecie.map(([valor, texto]) => (
+            <label>
+              <input type="radio" name="especie" value={valor} /> {texto}
+            </label>
+          ))
+        }
+      </fieldset>
+      <fieldset>
+        <legend>Estado</legend>
+        <label><input type="radio" name="estado" value="" checked /> Todos</label>
+        {
+          filtrosEstado.map(([valor, texto]) => (
+            <label>
+              <input type="radio" name="estado" value={valor} /> {texto}
+            </label>
+          ))
+        }
+      </fieldset>
+    </form>
+
+    <h2 id="t-buscan" class="visually-hidden">Buscan casa</h2>
+    <p class="recuento" role="status" aria-live="polite">
+      {buscanCasa.length} animales buscan casa.
+    </p>
+    <ul class="rejilla" id="lista-animales" aria-labelledby="t-buscan">
+      {
+        buscanCasa.map((animal, i) => (
+          <li data-especie={animal.data.especie} data-estado={animal.data.estado}>
+            <TarjetaAnimal animal={animal} prioridad={i < 2} />
+          </li>
+        ))
+      }
+    </ul>
+    <p class="sin-resultados" hidden>No hay animales con estos filtros. Prueba a quitar alguno.</p>
+  </div>
+
+  {
+    conCasa.length > 0 && (
+      <section class="seccion seccion--alt" aria-labelledby="t-casa">
+        <div class="contenedor">
+          <h2 id="t-casa">Ya tienen casa</h2>
+          <p>Gracias a las familias que les han abierto la puerta.</p>
+          <ul class="rejilla">
+            {conCasa.map((animal) => (
+              <li>
+                <TarjetaAnimal animal={animal} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+</Base>
+
+<script>
+  // Client-side filters. Without JavaScript the form stays hidden and every animal is listed.
+  const form = document.querySelector<HTMLFormElement>('.filtros');
+  const items = [...document.querySelectorAll<HTMLLIElement>('#lista-animales > li')];
+  const recuento = document.querySelector<HTMLElement>('.recuento');
+  const vacio = document.querySelector<HTMLElement>('.sin-resultados');
+
+  function aplicar() {
+    if (!form) return;
+    const datos = new FormData(form);
+    const especie = String(datos.get('especie') ?? '');
+    const estado = String(datos.get('estado') ?? '');
+    let visibles = 0;
+    for (const li of items) {
+      const ok = (!especie || li.dataset.especie === especie) && (!estado || li.dataset.estado === estado);
+      li.hidden = !ok;
+      if (ok) visibles++;
+    }
+    if (recuento) {
+      recuento.textContent =
+        visibles === items.length
+          ? `${items.length} animales buscan casa.`
+          : `Mostrando ${visibles} de ${items.length} animales.`;
+    }
+    if (vacio) vacio.hidden = visibles > 0;
+
+    // Keep the filters in the URL so a filtered list can be shared
+    const url = new URL(window.location.href);
+    especie ? url.searchParams.set('especie', especie) : url.searchParams.delete('especie');
+    estado ? url.searchParams.set('estado', estado) : url.searchParams.delete('estado');
+    history.replaceState(null, '', url);
+  }
+
+  if (form) {
+    const params = new URLSearchParams(window.location.search);
+    for (const nombre of ['especie', 'estado']) {
+      const valor = params.get(nombre);
+      const input = valor && form.querySelector<HTMLInputElement>(`input[name="${nombre}"][value="${CSS.escape(valor)}"]`);
+      if (input) input.checked = true;
+    }
+    form.addEventListener('change', aplicar);
+    if (params.has('especie') || params.has('estado')) aplicar();
+  }
+</script>
+
+<style>
+  .solo-js {
+    display: none;
+  }
+
+  :global(.js) .solo-js {
+    display: flex;
+  }
+
+  .filtros {
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    margin-block: 1.5rem 1rem;
+  }
+
+  fieldset {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 0.75rem 1rem 1rem;
+    margin: 0;
+    background: var(--surface);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  legend {
+    font-weight: 800;
+    padding-inline: 0.25rem;
+  }
+
+  label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 44px;
+    padding: 0.2rem 0.8rem;
+    border: 2px solid var(--line);
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: 700;
+  }
+
+  label:has(input:checked) {
+    border-color: var(--brand);
+    background: var(--surface-alt);
+  }
+
+  input[type='radio'] {
+    width: 1.1rem;
+    height: 1.1rem;
+    accent-color: var(--brand);
+  }
+
+  .recuento {
+    font-weight: 700;
+    color: var(--muted);
+  }
+
+  .sin-resultados {
+    font-weight: 700;
+    margin-top: 1rem;
+  }
+</style>

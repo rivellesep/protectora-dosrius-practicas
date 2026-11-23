@@ -1,0 +1,6 @@
+# Practice project. Pages stay crawlable so search engines can read the noindex rule
+# (meta robots and the X-Robots-Tag header). Blocking them here would hide that rule.
+User-agent: *
+Allow: /
+
+Sitemap: https://protectora-dosrius-practicas.enric-albert-federg.workers.dev/sitemap-index.xml

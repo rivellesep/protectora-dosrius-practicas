@@ -13,7 +13,7 @@ Medición de la web contra [CRITERIOS.md](CRITERIOS.md). Documento en curso: se 
 | Contenido (C1–C4) | 4 | 0 | 0 | 0 |
 | Proyecto de prácticas (P1–P4) | 4 | 0 | 0 | 0 |
 | Edición (E1–E7) | 5 | 2 | 0 | 0 |
-| Calidad (Q1–Q5) | 3 | 0 | 0 | 2 |
+| Calidad (Q1–Q5) | 4 | 0 | 0 | 1 |
 | Hosting y coste (H1–H2) | 1 | 1 | 0 | 0 |
 | Entregables (D1–D5) | 3 | 0 | 0 | 2 |
 
@@ -52,7 +52,7 @@ Medición de la web contra [CRITERIOS.md](CRITERIOS.md). Documento en curso: se 
 | # | Resultado | Prueba |
 | --- | --- | --- |
 | Q1 | **Cumple** | `npm run calidad`: Lighthouse móvil da 100 en Accesibilidad en las 5 plantillas, sin auditorías fallidas. Lighthouse usa axe-core. Informes en `calidad/`. |
-| Q2 | **Pendiente** | Falta el recorrido a mano con teclado y la comprobación de contraste plantilla por plantilla. Los colores se eligieron calculando el contraste AA. |
+| Q2 | **Cumple** | Recorrido con teclado en Chrome: el primer Tab muestra «Saltar al contenido», que lleva el foco a `#contenido`. El foco se ve en todos los enlaces y controles. Los filtros del listado se usan con las flechas y el recuento se actualiza («Mostrando 2 de 6 animales»). `scripts/contraste-teclado.mjs`: los 14 pares de colores cumplen AA, entre 5,44:1 y 15,14:1. A 375 px, el botón «Menú» se alcanza con Tab, se abre con Enter y se cierra con Escape, y el foco vuelve al botón. Todas las páginas declaran `lang="es"`. Arreglado: el contorno de foco de «Saltar al contenido» casi no se veía sobre la barra oscura del aviso. |
 | Q3 | **Pendiente** | Falta la prueba con NVDA. |
 | Q4 | **Cumple** | Lighthouse móvil, con las fotos reales: 100 en Rendimiento en el inicio, el listado y la ficha. LCP entre 0,8 s y 1,8 s. |
 | Q5 | **Cumple** | Sin scroll horizontal en las 5 plantillas a 320, 375, 768 y 1440 px. Capturas en `calidad/capturas/`. |

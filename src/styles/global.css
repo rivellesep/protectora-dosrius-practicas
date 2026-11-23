@@ -87,13 +87,14 @@ a:hover {
   border-radius: 4px;
 }
 
+/* It appears over the dark practice notice, so it uses the brand colour and a light focus ring */
 .skip-link {
   position: absolute;
   left: 1rem;
   top: -10rem;
   z-index: 100;
-  background: var(--text);
-  color: var(--bg);
+  background: var(--brand-dark);
+  color: var(--on-brand);
   padding: 0.75rem 1rem;
   border-radius: 8px;
   font-weight: 700;
@@ -101,7 +102,11 @@ a:hover {
 
 .skip-link:focus {
   top: 1rem;
-  color: var(--bg);
+  color: var(--on-brand);
+}
+
+.skip-link:focus-visible {
+  outline-color: #ffd8b5;
 }
 
 .visually-hidden {

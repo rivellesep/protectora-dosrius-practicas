@@ -5,7 +5,7 @@
 Segunda web del programa de prácticas: una web pequeña para una protectora de pueblo llevada por voluntarios, con un CMS que pueden usar sin cuenta de GitHub.
 
 - **Web**: https://protectora-dosrius-practicas.enric-albert-federg.workers.dev
-- **Criterios de aceptación**: [CRITERIOS.md](CRITERIOS.md). También están en Notion, como subpágina del ejercicio.
+- **Criterios de aceptación**: [CRITERIOS.md](CRITERIOS.md). También están en Notion, como subpágina del ejercicio, y se medirán contra la web al terminar.
 - **Por qué este CMS, este hosting y este framework**: [COMPARATIVA.md](COMPARATIVA.md)
 
 ## Cómo funciona
@@ -18,7 +18,7 @@ Segunda web del programa de prácticas: una web pequeña para una protectora de 
 | CMS | [Pages CMS](https://pagescms.org), con invitaciones por email | `.pages.yml` |
 | Hosting | Cloudflare Workers, solo con assets estáticos, sin código de Worker | `wrangler.jsonc`, `public/_headers` |
 
-Cada vez que alguien guarda en Pages CMS se crea un commit en `main`. Cloudflare Workers Builds construye la web y la publica. Si la construcción falla, la web publicada no cambia.
+Cada vez que alguien guarda en Pages CMS se crea un commit en `main`. Cloudflare Workers Builds, conectado al repositorio, construye la web con `npm run build` y la publica con `npx wrangler deploy`. Si la construcción falla, la web publicada no cambia.
 
 `.pages.yml` y `src/content.config.ts` describen los mismos campos. Si cambias uno, cambia también el otro.
 

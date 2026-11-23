@@ -8,7 +8,7 @@ tamano: mediano
 convive:
   - gatos
   - perros
-resumen: Un gato tranquilo y sociable que convive con perros y gatos.
+resumen: Ya vive con la familia que lo reservó.
 llegada: 2026-07-30
 fotos:
   - imagen: /src/assets/animales/pelut.jpg
@@ -17,4 +17,4 @@ oculto: false
 ---
 Pelut es un gato tranquilo al que le gusta observarlo todo desde lo alto. Se acerca a pedir mimos cuando coge confianza.
 
-Ha vivido con perros y con otros gatos. Ya tiene una familia interesada, por eso está reservado.
+Ha vivido con perros y con otros gatos. En noviembre se fue a vivir con la familia que lo había reservado.

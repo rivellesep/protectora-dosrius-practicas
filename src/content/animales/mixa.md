@@ -10,7 +10,7 @@ resumen: "Juguetona y curiosa. Se lleva bien con otros gatos."
 llegada: 2026-10-20
 fotos:
   - imagen: /src/assets/animales/mixa.jpg
-    alt: "Ilustración provisional: huella de pata morada sobre fondo lila"
+    alt: "Gata atigrada gris de pie entre la hierba, mirando a la cámara"
 oculto: false
 ---
 

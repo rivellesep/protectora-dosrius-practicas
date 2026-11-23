@@ -2,6 +2,7 @@
 // are added. Usage: node scripts/placeholders.mjs
 import sharp from 'sharp';
 import { mkdir } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 
 const paw = (fill) => `
   <g fill="${fill}" opacity="0.9">
@@ -34,6 +35,11 @@ const images = [
 ];
 
 for (const [out, bg, fg, label] of images) {
+  // Never overwrite a real photo that has replaced a placeholder
+  if (existsSync(out)) {
+    console.log('skip (exists)', out);
+    continue;
+  }
   await mkdir(out.split('/').slice(0, -1).join('/'), { recursive: true });
   await sharp(Buffer.from(svg({ bg, fg, label }))).jpeg({ quality: 82 }).toFile(out);
   console.log('wrote', out);

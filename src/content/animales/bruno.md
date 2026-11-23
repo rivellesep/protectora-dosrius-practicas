@@ -10,7 +10,7 @@ resumen: "Un grandullón noble que busca un sofá y una familia con calma."
 llegada: 2026-08-15
 fotos:
   - imagen: /src/assets/animales/bruno.jpg
-    alt: "Ilustración provisional: huella de pata verde oscuro sobre fondo verde claro"
+    alt: "Labrador de color crema tumbado en el suelo, con collar y la cabeza apoyada en el suelo"
 oculto: false
 ---
 

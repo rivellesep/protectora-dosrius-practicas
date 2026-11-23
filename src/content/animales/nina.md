@@ -10,7 +10,7 @@ resumen: "Cachorra llena de energía que lo quiere aprender todo."
 llegada: 2026-11-05
 fotos:
   - imagen: /src/assets/animales/nina.jpg
-    alt: "Ilustración provisional: huella de pata azul oscuro sobre fondo azul claro"
+    alt: "Cachorra de pelo marrón claro y blanco sentada, mirando a la cámara"
 oculto: false
 ---
 

@@ -10,7 +10,7 @@ resumen: "Ya disfruta de su retiro en una casa con jardín."
 llegada: 2026-04-22
 fotos:
   - imagen: /src/assets/animales/canela.jpg
-    alt: "Ilustración provisional: huella de pata marrón sobre fondo beis"
+    alt: "Gata blanca con manchas grises durmiendo al sol sobre un muro"
 oculto: false
 ---
 

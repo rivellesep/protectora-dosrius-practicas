@@ -1,0 +1,148 @@
+{
+  "fecha": "2026-11-23T09:32:13.715Z",
+  "base": "https://protectora-dosrius-practicas.enric-albert-federg.workers.dev",
+  "lighthouse": [
+    {
+      "nombre": "inicio",
+      "path": "/",
+      "accesibilidad": 100,
+      "rendimiento": 100,
+      "auditoriasA11yFallidas": [],
+      "LCP": "1.1 s"
+    },
+    {
+      "nombre": "listado",
+      "path": "/animales/",
+      "accesibilidad": 100,
+      "rendimiento": 100,
+      "auditoriasA11yFallidas": [],
+      "LCP": "0.9 s"
+    },
+    {
+      "nombre": "ficha",
+      "path": "/animales/luna/",
+      "accesibilidad": 100,
+      "rendimiento": 100,
+      "auditoriasA11yFallidas": [],
+      "LCP": "1.1 s"
+    },
+    {
+      "nombre": "noticia",
+      "path": "/noticias/jornada-de-adopcion-diciembre/",
+      "accesibilidad": 100,
+      "rendimiento": 100,
+      "auditoriasA11yFallidas": [],
+      "LCP": "1.1 s"
+    },
+    {
+      "nombre": "pagina",
+      "path": "/como-adoptar/",
+      "accesibilidad": 100,
+      "rendimiento": 100,
+      "auditoriasA11yFallidas": [],
+      "LCP": "0.8 s"
+    }
+  ],
+  "responsive": [
+    {
+      "ancho": 320,
+      "nombre": "inicio",
+      "desbordePx": 0
+    },
+    {
+      "ancho": 320,
+      "nombre": "listado",
+      "desbordePx": 0
+    },
+    {
+      "ancho": 320,
+      "nombre": "ficha",
+      "desbordePx": 0
+    },
+    {
+      "ancho": 320,
+      "nombre": "noticia",
+      "desbordePx": 0
+    },
+    {
+      "ancho": 320,
+      "nombre": "pagina",
+      "desbordePx": 0
+    },
+    {
+      "ancho": 375,
+      "nombre": "inicio",
+      "desbordePx": 0
+    },
+    {
+      "ancho": 375,
+      "nombre": "listado",
+      "desbordePx": 0
+    },
+    {
+      "ancho": 375,
+      "nombre": "ficha",
+      "desbordePx": 0
+    },
+    {
+      "ancho": 375,
+      "nombre": "noticia",
+      "desbordePx": 0
+    },
+    {
+      "ancho": 375,
+      "nombre": "pagina",
+      "desbordePx": 0
+    },
+    {
+      "ancho": 768,
+      "nombre": "inicio",
+      "desbordePx": 0
+    },
+    {
+      "ancho": 768,
+      "nombre": "listado",
+      "desbordePx": 0
+    },
+    {
+      "ancho": 768,
+      "nombre": "ficha",
+      "desbordePx": 0
+    },
+    {
+      "ancho": 768,
+      "nombre": "noticia",
+      "desbordePx": 0
+    },
+    {
+      "ancho": 768,
+      "nombre": "pagina",
+      "desbordePx": 0
+    },
+    {
+      "ancho": 1440,
+      "nombre": "inicio",
+      "desbordePx": 0
+    },
+    {
+      "ancho": 1440,
+      "nombre": "listado",
+      "desbordePx": 0
+    },
+    {
+      "ancho": 1440,
+      "nombre": "ficha",
+      "desbordePx": 0
+    },
+    {
+      "ancho": 1440,
+      "nombre": "noticia",
+      "desbordePx": 0
+    },
+    {
+      "ancho": 1440,
+      "nombre": "pagina",
+      "desbordePx": 0
+    }
+  ]
+}

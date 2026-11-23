@@ -10,7 +10,7 @@ resumen: "Cariñosa y tranquila. Le encanta pasear por el bosque y dormir cerca 
 llegada: 2026-10-02
 fotos:
   - imagen: /src/assets/animales/luna.jpg
-    alt: "Ilustración provisional: huella de pata marrón sobre fondo melocotón"
+    alt: "Perro joven de pelo marrón y negro tumbado en la hierba, con la cabeza levantada"
 oculto: false
 ---
 

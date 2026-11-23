@@ -5,7 +5,7 @@ fecha: 2026-12-13
 lugar: "Centro del pueblo, Dosrius"
 resumen: "Ven a conocer a los perros y gatos que buscan casa. Habrá información sobre acogida y voluntariado."
 imagen: /src/assets/noticias/jornada-adopcion.jpg
-alt: "Ilustración provisional: huella de pata verde oscuro sobre fondo verde claro"
+alt: "Primer plano de un perro mestizo de pelo largo marrón, negro y blanco"
 oculto: false
 ---
 

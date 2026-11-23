@@ -12,7 +12,7 @@ resumen: Ya vive con la familia que lo reservó.
 llegada: 2026-07-30
 fotos:
   - imagen: /src/assets/animales/pelut.jpg
-    alt: "Ilustración provisional: huella de pata ocre sobre fondo crema"
+    alt: "Gato atigrado marrón subido a las ramas de un árbol sin hojas"
 oculto: false
 ---
 Pelut es un gato tranquilo al que le gusta observarlo todo desde lo alto. Se acerca a pedir mimos cuando coge confianza.

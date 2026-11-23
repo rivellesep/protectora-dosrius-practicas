@@ -4,7 +4,7 @@ tipo: noticia
 fecha: 2026-11-10
 resumen: "Con el frío llegan más animales. Una casa de acogida temporal nos permite atender a más perros y gatos."
 imagen: /src/assets/noticias/acogida-invierno.jpg
-alt: "Ilustración provisional: huella de pata azul oscuro sobre fondo azul claro"
+alt: "Perro pequeño envuelto en una manta de cuadros en un camino del bosque"
 oculto: false
 ---
 

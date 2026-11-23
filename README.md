@@ -54,5 +54,19 @@ scripts/
 ## Fuentes y licencias
 
 - **Datos reales de la entidad** (nombre, pueblo, que la llevan voluntarios sin ánimo de lucro, su forma de entender a los animales como amigos y el enlace de donaciones): su página pública de Teaming, https://www.teaming.net/amicsdelsanimalsdosrius, consultada el 23/11/2026. El resto del contenido es inventado.
-- **Imágenes**: de momento son ilustraciones provisionales generadas con `scripts/placeholders.mjs`. Cuando las cambiemos por fotos con licencia libre, la autoría y la licencia de cada una quedarán anotadas aquí.
+- **Fotos**: de Wikimedia Commons, todas con licencia libre y sin personas. Las descargamos a 1600 px de ancho el 23/11/2026, sin otros cambios. Los animales de la web son inventados: las fotos no muestran a animales reales de la protectora.
+
+  | Dónde | Archivo original | Autoría | Licencia |
+  | --- | --- | --- | --- |
+  | Luna | [Young mixed-breed dog (aka).jpg](https://commons.wikimedia.org/wiki/File:Young_mixed-breed_dog_(aka).jpg) | André Karwath aka Aka | CC BY-SA 2.5 |
+  | Bruno | [43 Old dog - senior labrador dog with collar resting on sidewalk.jpg](https://commons.wikimedia.org/wiki/File:43_Old_dog_-_senior_labrador_dog_with_collar_resting_on_sidewalk.jpg) | Marek Ślusarczyk (Tupungato) | CC BY 3.0 |
+  | Mixa | [20200816 Kot domowy, na polu w Rżuchowie, świętokrzyskie 0803 3618.jpg](https://commons.wikimedia.org/wiki/File:20200816_Kot_domowy,_na_polu_w_R%C5%BCuchowie,_%C5%9Bwi%C4%99tokrzyskie_0803_3618.jpg) | Jakub Hałun | CC BY-SA 4.0 |
+  | Pelut | [Brown tabby cat 2018 G1.jpg](https://commons.wikimedia.org/wiki/File:Brown_tabby_cat_2018_G1.jpg) | George Chernilevsky | Dominio público |
+  | Nina | [Brown-white mixed-breed puppy 2.JPG](https://commons.wikimedia.org/wiki/File:Brown-white_mixed-breed_puppy_2.JPG) | BrokenSphere | CC BY-SA 3.0 |
+  | Tambor | [Schwarz-braunes Hauskaninchen Pforzheim.JPG](https://commons.wikimedia.org/wiki/File:Schwarz-braunes_Hauskaninchen_Pforzheim.JPG) | 4028mdk09 | CC BY-SA 3.0 |
+  | Canela | [Feral cat sleeping near the Old City of Baku.jpg](https://commons.wikimedia.org/wiki/File:Feral_cat_sleeping_near_the_Old_City_of_Baku.jpg) | əkrəm. | CC0 |
+  | Noticia «Buscamos casas de acogida» | [A dog wrapped up into a blanket.jpg](https://commons.wikimedia.org/wiki/File:A_dog_wrapped_up_into_a_blanket.jpg) | Free-Photos | CC0 |
+  | Noticia «Jornada de adopción» | [20160327 pies nierasowy 3691.jpg](https://commons.wikimedia.org/wiki/File:20160327_pies_nierasowy_3691.jpg) | Jakub Hałun | CC BY-SA 4.0 |
+
+  Rufo todavía usa una ilustración provisional generada con `scripts/placeholders.mjs`: Wikimedia limitó las descargas (error 429) antes de bajar su foto.
 - **Tipografía**: Nunito, licencia SIL Open Font License, vía [Fontsource](https://fontsource.org/fonts/nunito).

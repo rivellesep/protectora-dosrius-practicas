@@ -10,7 +10,7 @@ resumen: "Conejo dócil que se deja coger y disfruta de un espacio amplio."
 llegada: 2026-09-12
 fotos:
   - imagen: /src/assets/animales/tambor.jpg
-    alt: "Ilustración provisional: huella de pata granate sobre fondo rosa"
+    alt: "Conejo negro con manchas marrones entre plantas verdes"
 oculto: false
 ---
 

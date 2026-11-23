@@ -12,7 +12,7 @@ Medición de la web contra [CRITERIOS.md](CRITERIOS.md). Documento en curso: se 
 | --- | --- | --- | --- | --- |
 | Contenido (C1–C4) | 4 | 0 | 0 | 0 |
 | Proyecto de prácticas (P1–P4) | 4 | 0 | 0 | 0 |
-| Edición (E1–E7) | 3 | 3 | 0 | 1 |
+| Edición (E1–E7) | 4 | 3 | 0 | 0 |
 | Calidad (Q1–Q5) | 3 | 0 | 0 | 2 |
 | Hosting y coste (H1–H2) | 1 | 1 | 0 | 0 |
 | Entregables (D1–D5) | 2 | 0 | 0 | 3 |
@@ -40,10 +40,10 @@ Medición de la web contra [CRITERIOS.md](CRITERIOS.md). Documento en curso: se 
 | # | Resultado | Prueba |
 | --- | --- | --- |
 | E1 | **Cumple** | Invitamos por Pages CMS a un correo sin cuenta de GitHub. Desde el móvil se entró con ese correo y el código que llegó por email, y se vio la lista de animales. |
-| E2 | **Cumple en parte** | Probado con la cuenta de administrador: cambiar el estado de un animal. Faltan, con la cuenta de voluntario, dar de alta un animal con fotos, publicar una noticia y editar una página fija. |
-| E3 | **Cumple** | Medido: un push tardó 49 s en publicarse (09:31:13 → 09:32:02) y un cambio de estado desde Pages CMS, unos 69 s (09:44:32 → 09:45:41). Faltan más mediciones para llegar a las tres del criterio, pero las dos están muy por debajo de 5 minutos. La construcción se reparte así: preparar el entorno 38 s, clonar 2 s, instalar dependencias 37 s y construir unos 5 s. |
-| E4 | **Cumple en parte** | **Una foto de móvil sin tocar no se puede subir:** Pages CMS devuelve un error 413 con las fotos de más de unos 3 MB. Es un límite de su versión alojada en Vercel (issue #393, abierta). Lo que sí funciona: las fotos que caben (las de Commons, de unos 700 KB) se sirven en WebP a 320, 480 y 640 px, y el texto alternativo es obligatorio. El apaño para voluntarios es reducir la foto antes, por ejemplo enviándola por WhatsApp. Falta comprobar el apaño desde el móvil. |
-| E5 | **Pendiente** | Pages CMS documenta que las personas invitadas no pueden editar `.pages.yml` ni las invitaciones. Falta comprobarlo con la cuenta de voluntario. |
+| E2 | **Cumple en parte** | Con la cuenta de voluntario, desde el móvil: se dio de alta a Blanquito con foto y luego se cambió su estado a «Reservado». Faltan publicar una noticia y editar una página fija. Observado: después de guardar, el editor se queda en la misma ficha, y la voluntaria cambió el estado de Blanquito creyendo que estaba en la de Tambor. Va a la guía. |
+| E3 | **Cumple** | Medido tres veces: un push tardó 49 s en publicarse (09:31:13 → 09:32:02); un cambio de estado desde Pages CMS, 69 s (09:44:32 → 09:45:41); y el alta de Blanquito desde el móvil, 50 s (10:23:38 → 10:24:28). Las tres están muy por debajo de 5 minutos. La construcción se reparte así: preparar el entorno 38 s, clonar 2 s, instalar dependencias 37 s y construir unos 5 s. |
+| E4 | **Cumple en parte** | **Una foto de móvil sin tocar no se puede subir:** Pages CMS devuelve un error 413 con las fotos de más de unos 3 MB. Es un límite de su versión alojada en Vercel (issue #393, abierta). Lo que sí funciona: las fotos que caben (las de Commons, de unos 700 KB) se sirven en WebP a 320, 480 y 640 px, y el texto alternativo es obligatorio. El apaño para voluntarios es reducir la foto antes, por ejemplo enviándola por WhatsApp. Probado desde el móvil: la foto, enviada antes por WhatsApp, quedó en 240 KB (1536 × 2048 px), sin metadatos EXIF y por tanto sin GPS. Subió sin error y la web la sirve en tres tamaños. |
+| E5 | **Cumple** | Con la cuenta de voluntario, el menú no muestra «Configuration» ni «Collaborators». Según la documentación, esas rutas exigen una identidad de GitHub; no probamos a abrirlas escribiendo la dirección a mano. Los commits del voluntario salen a nombre de `pages-cms[bot]`, sin su correo. |
 | E6 | **Cumple en parte** | Cada guardado es un commit en Git, sin límite de tiempo. Probado al deshacer la prueba de E7 con `git revert`. Falta recuperar una ficha borrada, como pide el criterio. |
 | E7 | **Cumple** | Subimos a propósito un estado inválido (`perdido`). La construcción falló con `InvalidContentEntryDataError ... estado: Invalid option: expected one of "disponible"\|"reservado"\|"adoptado"` y la web siguió mostrando a Tambor como «Disponible». Después lo revertimos. ![Construcción fallida](capturas/e7-construccion-fallida.jpg) |
 

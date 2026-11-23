@@ -8,6 +8,7 @@ Segunda web del programa de prácticas: una web pequeña para una protectora de 
 - **Criterios de aceptación**: [CRITERIOS.md](CRITERIOS.md). También están en Notion, como subpágina del ejercicio, y se medirán contra la web al terminar.
 - **Por qué este CMS, este hosting y este framework**: [COMPARATIVA.md](COMPARATIVA.md)
 - **Resultado contra los criterios**: [RESULTADOS.md](RESULTADOS.md), en curso
+- **Guía para editar la web** (para voluntarios): [GUIA-EDITOR.md](GUIA-EDITOR.md)
 
 ## Cómo funciona
 

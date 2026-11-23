@@ -10,7 +10,8 @@
     "preview": "wrangler dev",
     "check": "astro check",
     "verify": "node scripts/verify-noindex.mjs",
-    "astro": "astro"
+    "astro": "astro",
+    "calidad": "node scripts/calidad.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.4",
@@ -20,6 +21,9 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
+    "chrome-launcher": "^1.2.3",
+    "lighthouse": "^13.6.0",
+    "puppeteer-core": "^25.18.1",
     "typescript": "^6.0.3",
     "wrangler": "^4.155.0"
   },

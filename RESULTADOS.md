@@ -12,7 +12,7 @@ Medición de la web contra [CRITERIOS.md](CRITERIOS.md). Documento en curso: se 
 | --- | --- | --- | --- | --- |
 | Contenido (C1–C4) | 4 | 0 | 0 | 0 |
 | Proyecto de prácticas (P1–P4) | 4 | 0 | 0 | 0 |
-| Edición (E1–E7) | 2 | 2 | 0 | 3 |
+| Edición (E1–E7) | 3 | 3 | 0 | 1 |
 | Calidad (Q1–Q5) | 3 | 0 | 0 | 2 |
 | Hosting y coste (H1–H2) | 1 | 1 | 0 | 0 |
 | Entregables (D1–D5) | 2 | 0 | 0 | 3 |
@@ -39,10 +39,10 @@ Medición de la web contra [CRITERIOS.md](CRITERIOS.md). Documento en curso: se 
 
 | # | Resultado | Prueba |
 | --- | --- | --- |
-| E1 | **Pendiente** | Invitación de Pages CMS enviada a un correo sin cuenta de GitHub. Falta entrar con ella. La pantalla de acceso ya ofrece «Continue with email». |
+| E1 | **Cumple** | Invitamos por Pages CMS a un correo sin cuenta de GitHub. Desde el móvil se entró con ese correo y el código que llegó por email, y se vio la lista de animales. |
 | E2 | **Cumple en parte** | Probado con la cuenta de administrador: cambiar el estado de un animal. Faltan, con la cuenta de voluntario, dar de alta un animal con fotos, publicar una noticia y editar una página fija. |
 | E3 | **Cumple** | Medido: un push tardó 49 s en publicarse (09:31:13 → 09:32:02) y un cambio de estado desde Pages CMS, unos 69 s (09:44:32 → 09:45:41). Faltan más mediciones para llegar a las tres del criterio, pero las dos están muy por debajo de 5 minutos. La construcción se reparte así: preparar el entorno 38 s, clonar 2 s, instalar dependencias 37 s y construir unos 5 s. |
-| E4 | **Pendiente** | Las fotos de Commons, de unos 700 KB, se sirven en WebP a 320, 480 y 640 px en las tarjetas. Falta subir una foto de móvil sin tocar desde el CMS. |
+| E4 | **Cumple en parte** | **Una foto de móvil sin tocar no se puede subir:** Pages CMS devuelve un error 413 con las fotos de más de unos 3 MB. Es un límite de su versión alojada en Vercel (issue #393, abierta). Lo que sí funciona: las fotos que caben (las de Commons, de unos 700 KB) se sirven en WebP a 320, 480 y 640 px, y el texto alternativo es obligatorio. El apaño para voluntarios es reducir la foto antes, por ejemplo enviándola por WhatsApp. Falta comprobar el apaño desde el móvil. |
 | E5 | **Pendiente** | Pages CMS documenta que las personas invitadas no pueden editar `.pages.yml` ni las invitaciones. Falta comprobarlo con la cuenta de voluntario. |
 | E6 | **Cumple en parte** | Cada guardado es un commit en Git, sin límite de tiempo. Probado al deshacer la prueba de E7 con `git revert`. Falta recuperar una ficha borrada, como pide el criterio. |
 | E7 | **Cumple** | Subimos a propósito un estado inválido (`perdido`). La construcción falló con `InvalidContentEntryDataError ... estado: Invalid option: expected one of "disponible"\|"reservado"\|"adoptado"` y la web siguió mostrando a Tambor como «Disponible». Después lo revertimos. ![Construcción fallida](capturas/e7-construccion-fallida.jpg) |
@@ -78,4 +78,6 @@ Medición de la web contra [CRITERIOS.md](CRITERIOS.md). Documento en curso: se 
 
 - **Pages CMS firma con tu cuenta si entras con GitHub.** Aunque `.pages.yml` diga `commit.identity: app`, el commit que hicimos con la sesión de GitHub del administrador salió con su nombre y su correo personal. Como el repositorio es público, el correo quedó visible. Lo corregimos reescribiendo ese commit. Para que no vuelva a pasar, hay que activar en GitHub la opción de mantener el correo privado (pendiente de comprobar que funciona con Pages CMS). Las personas invitadas por email no tienen este problema: según la documentación, sus commits salen con la identidad de la aplicación.
 - **Pages CMS reescribe los archivos al guardar.** Cambia el orden de los campos, pasa las listas al formato de varias líneas y quita las comillas que no hacen falta. No afecta a la web, pero el primer commit de cada ficha cambia más líneas de las que se han editado.
+- **El límite de tamaño de las fotos no estaba en la documentación.** Pages CMS no documenta cuánto puede pesar un archivo. Lo descubrimos al subir la primera foto de móvil (error 413) y buscando en sus issues. Lección: antes de elegir, probar el caso más típico del usuario real (aquí, una foto de móvil), no solo leer la documentación.
+- **Las fotos de móvil llevan la ubicación GPS.** Astro la quita de las imágenes que publica, pero el original se queda en el repositorio público. La guía pide desactivar la ubicación de la cámara o pasar la foto por WhatsApp, que la borra.
 - **Astro acepta rutas de imagen absolutas desde la raíz** (`/src/assets/animales/luna.jpg`). Pages CMS no documenta si admite rutas relativas, pero con ese formato encajan los dos.

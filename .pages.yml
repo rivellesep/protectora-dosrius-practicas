@@ -126,7 +126,7 @@ content:
         label: Fotos
         type: object
         required: true
-        description: Al menos una. La primera es la que sale en las tarjetas. Sube las fotos tal cual, desde el móvil o el ordenador.
+        description: 'Al menos una. La primera es la que sale en las tarjetas. Si al subirla sale «error 413», la foto pesa más de 3 MB: envíatela por WhatsApp, guárdala desde ahí y súbela otra vez.'
         list:
           min: 1
           max: 8

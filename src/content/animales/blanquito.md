@@ -1,6 +1,6 @@
 ---
 nombre: Blanquito
-estado: disponible
+estado: reservado
 especie: gato
 sexo: macho
 edad: 4 años

@@ -1,5 +1,5 @@
 {
-  "fecha": "2026-11-23T09:32:13.715Z",
+  "fecha": "2026-11-23T10:01:01.442Z",
   "base": "https://protectora-dosrius-practicas.enric-albert-federg.workers.dev",
   "lighthouse": [
     {
@@ -8,7 +8,7 @@
       "accesibilidad": 100,
       "rendimiento": 100,
       "auditoriasA11yFallidas": [],
-      "LCP": "1.1 s"
+      "LCP": "1.0 s"
     },
     {
       "nombre": "listado",
@@ -24,7 +24,7 @@
       "accesibilidad": 100,
       "rendimiento": 100,
       "auditoriasA11yFallidas": [],
-      "LCP": "1.1 s"
+      "LCP": "1.8 s"
     },
     {
       "nombre": "noticia",
@@ -32,7 +32,7 @@
       "accesibilidad": 100,
       "rendimiento": 100,
       "auditoriasA11yFallidas": [],
-      "LCP": "1.1 s"
+      "LCP": "1.5 s"
     },
     {
       "nombre": "pagina",

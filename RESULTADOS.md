@@ -15,7 +15,7 @@ Medición de la web contra [CRITERIOS.md](CRITERIOS.md). Documento en curso: se 
 | Edición (E1–E7) | 5 | 2 | 0 | 0 |
 | Calidad (Q1–Q5) | 4 | 0 | 0 | 1 |
 | Hosting y coste (H1–H2) | 1 | 1 | 0 | 0 |
-| Entregables (D1–D5) | 3 | 0 | 0 | 2 |
+| Entregables (D1–D5) | 4 | 0 | 0 | 1 |
 
 ## Contenido
 
@@ -72,7 +72,7 @@ Medición de la web contra [CRITERIOS.md](CRITERIOS.md). Documento en curso: se 
 | D2 | **Cumple** | [COMPARATIVA.md](COMPARATIVA.md), apartado de hosting. |
 | D3 | **Cumple** | [GUIA-EDITOR.md](GUIA-EDITOR.md). Pendiente de corregirla según lo que salga de la prueba D4. |
 | D4 | **Pendiente** | Prueba con una persona ajena al proyecto. |
-| D5 | **Pendiente** | Documento de aprendizaje. |
+| D5 | **Cumple** | [APRENDIZAJE.md](APRENDIZAJE.md), separado en medido, observado y estimado. |
 
 ## Cosas que hemos aprendido por el camino
 
